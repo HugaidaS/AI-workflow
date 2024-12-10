@@ -17,17 +17,20 @@
     "@radix-ui/react-tooltip": "^1.1.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "framer-motion": "^11.13.4",
+    "framer-motion": "^11.13.5",
     "lucide-react": "^0.468.0",
     "next": "14.2.16",
     "next-themes": "^0.4.4",
+    "partial-json": "^0.1.7",
     "prettier": "^3.4.2",
     "react": "^18",
     "react-dom": "^18",
     "react-element-to-jsx-string": "^15.0.0",
+    "react-icons": "^5.4.0",
     "simplex-noise": "^4.0.3",
     "tailwind-merge": "^2.5.5",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "weaviate-client": "^3.2.5"
   },
   "devDependencies": {
     "@types/node": "^20",

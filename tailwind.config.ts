@@ -22,6 +22,10 @@ const config: Config = {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          accent: "hsl(var(--accent))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -30,8 +34,13 @@ const config: Config = {
       },
       animation: {
         shimmer: "shimmer 2s linear infinite",
+        move: "move 5s linear infinite",
       },
       keyframes: {
+        move: {
+          "0%": { transform: "translateX(-200px)" },
+          "100%": { transform: "translateX(200px)" },
+        },
         shimmer: {
           from: {
             backgroundPosition: "0 0",
