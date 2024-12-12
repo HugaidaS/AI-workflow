@@ -15,6 +15,7 @@ export async function POST(req: Request) {
     }
   );
 
+  //TODO: Check if the client is ready
   const response = await client.isReady();
 
   // //Example of how to create a collection and populate it with data
@@ -41,30 +42,13 @@ export async function POST(req: Request) {
   //
   // await importRecepies();
 
-  // const stream = new ReadableStream({
-  //   async start(controller) {
-  //     for await (const chunk of response) {
-  //       const content = chunk.choices[0]?.delta?.content || "";
-  //       controller.enqueue(new TextEncoder().encode(content));
-  //     }
-  //     controller.close();
-  //   },
-  // });
-  //
-  // return new NextResponse(stream, {
-  //   headers: {
-  //     "Content-Type": "text/plain",
-  //     "Transfer-Encoding": "chunked",
-  //   },
-  // });
-
   const cocktails = client.collections.get("Bar");
 
   const result = await cocktails.generate.nearText(
     prompt,
     {
       groupedTask:
-        "You are a bartender, say something comforting to a customer and tell a short story about a cocktails",
+        "You are an AI virtual bartender, but do not say it directly, just keep in mind, say something friendly to a customer and tell a short story about 3 selected cocktails. Limit yourself to 5 - 7 sentences.",
     },
     {
       limit: 3,
@@ -82,6 +66,7 @@ export async function POST(req: Request) {
     JSON.stringify({
       items: result.objects,
       generated: result.generated,
+      userPrompt: prompt,
     }),
     {
       headers: {

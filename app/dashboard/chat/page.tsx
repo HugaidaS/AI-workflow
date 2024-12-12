@@ -1,9 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import { Input } from "@/components/ui/input";
-import { Card, CardDescription, CardTitle } from "@/components/cards-demo-3";
-import Image from "next/image"; // Define the cocktail record interface for raw data from the backend
+import { CardDescription, CardTitle } from "@/components/cards-demo-3";
+import Image from "next/image";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { TypewriterEffect } from "@/components/ui/typewriter-effect";
+import { PlaceholdersAndVanishInput } from "@/components/ui/placeholders-and-vanish-input";
+import { BackgroundGradient } from "@/components/ui/background-gradient";
+import { GridLoader } from "react-spinners"; // Define the cocktail record interface for raw data from the backend
 
 // Define the cocktail record interface for raw data from the backend
 interface CocktailRecord {
@@ -57,13 +61,54 @@ const ChatPage = () => {
   );
   const [isLoading, setIsLoading] = useState(false);
   const [response, setResponse] = useState<Cocktail[]>([]);
-  const [bartenderResponse, setBartenderResponse] = useState("");
+  const [bartenderResponse, setBartenderResponse] = useState<string | null>(
+    null
+  );
+  const [answeredPrompt, setAnsweredPrompt] = useState<string | null>(null);
+
+  const words = [
+    {
+      text: "Ask",
+    },
+    {
+      text: "the",
+    },
+    {
+      text: "Midnight",
+    },
+    {
+      text: "Bartender",
+    },
+    {
+      text: "for",
+    },
+    {
+      text: "a",
+    },
+    {
+      text: "cocktail",
+    },
+    {
+      text: "recommendation",
+    },
+  ];
+
+  const placeholders = [
+    "What cocktail would you like to try?",
+    "How do you feel today?",
+    "Describe your perfect drink",
+    "What flavors do you like?",
+    "Are you in the mood for something sweet or sour?",
+    "What is your favorite spirit?",
+    "Do you prefer a shaken or stirred cocktail?",
+  ];
 
   const handleSubmit = async () => {
     setPrompt("");
     setIsLoading(true);
     setResponse([]);
-    setBartenderResponse("");
+    setBartenderResponse(null);
+    setAnsweredPrompt(null);
 
     try {
       const res = await fetch("/dashboard/chat/api", {
@@ -86,6 +131,7 @@ const ChatPage = () => {
       console.log(parsedItems);
       setResponse(parsedItems);
       setBartenderResponse(data.generated);
+      setAnsweredPrompt(data.userPrompt);
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
@@ -93,22 +139,70 @@ const ChatPage = () => {
     }
   };
 
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center size-full p-4">
+        <div className="flex flex-col items-center">
+          <h3 className="text-xl font-bold text_gradient_tertiary mb-2">
+            Looking for the best matches...
+          </h3>
+          <GridLoader color="purple" size={20} />
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="flex flex-col justify-between h-full">
+    <div className="flex flex-col justify-between h-full p-4 transition-all">
       <div>
-        <h1 className="text-3xl font-bold">
-          Ask the Midnight Bartender for a cocktail recommendation
-        </h1>
-        <p>{bartenderResponse}</p>
-        <div className="my-4 text-lg text-gray-600 flex flex-row flex-wrap">
+        <div className="flex flex-col gap-4">
+          {!answeredPrompt && !isLoading && (
+            <TypewriterEffect
+              words={words}
+              cursorClassName="bg-primary-accent"
+            />
+          )}
+          {answeredPrompt && (
+            <div className="w-full flex gap-4 ">
+              <div className="flex flex-col items-center gap-2">
+                <Avatar>
+                  <AvatarImage src="https://github.com/shadcn.png" />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+                <div>Me</div>
+              </div>
+              <p className="text-sm w-full sm:max-w-[50%] flex chat_userBubble element-bg">
+                {answeredPrompt}
+              </p>
+            </div>
+          )}
+          {bartenderResponse && (
+            <div className="w-full flex gap-4 justify-end ">
+              <p className="text-sm  w-full sm:max-w-[50%] chat_barternderBubble element-bg">
+                {bartenderResponse}
+              </p>
+              <div className="flex flex-col items-center gap-2">
+                <Avatar>
+                  <AvatarImage src="https://github.com/shadcn.png" />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+                <div>Dio</div>
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="my-4 text-lg text-gray-600 flex flex-row flex-wrap justify-around gap-3">
           {response.map((item) => (
-            <Card key={item.uuid} className="max-h-[500px]">
+            <BackgroundGradient
+              className="rounded-[22px] w-full sm:max-w-sm p-4 sm:p-10 bg-gray-100 dark:bg-zinc-900 h-full"
+              key={item.uuid}
+            >
               <Image
                 src={item.properties.drinkThumbnail}
                 alt={item.properties.name}
                 width={180}
                 height={100}
-                className="rounded-xl"
+                className="rounded-xl flex"
               />
 
               <CardTitle className="text-dark_light">
@@ -134,21 +228,17 @@ const ChatPage = () => {
                   {item.properties.instructions}
                 </div>
               </CardDescription>
-            </Card>
+            </BackgroundGradient>
           ))}
         </div>
       </div>
-      <Input
-        value={prompt}
-        disabled={isLoading}
-        onChange={(e) => setPrompt(e.target.value)}
-        onKeyDown={async (e) => {
-          if (e.key === "Enter") {
-            await handleSubmit();
-          }
-        }}
-        placeholder="What cocktail would you like to try?"
-      />
+      <div className="w-full">
+        <PlaceholdersAndVanishInput
+          placeholders={placeholders}
+          onChange={(e) => setPrompt(e.target.value)}
+          onSubmit={handleSubmit}
+        />
+      </div>
     </div>
   );
 };

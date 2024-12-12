@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 
 import {
   Sidebar,
@@ -13,9 +13,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
-import {usePathname} from "next/navigation";
+import { usePathname } from "next/navigation"; // This is sample data.
 
 // This is sample data.
 const data = {
@@ -26,12 +26,8 @@ const data = {
       url: "#",
       items: [
         {
-          title: "Chat",
+          title: "Chat with 🤖 Bartender",
           url: "/dashboard/chat",
-        },
-        {
-          title: "Write your poem",
-          url: "/dashboard/compose",
         },
       ],
     },
@@ -45,11 +41,7 @@ const data = {
         },
         {
           title: "Github",
-          url: "https://github.com/HugaidaS",
-        },
-        {
-          title: "Video Demo",
-          url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          url: "https://github.com/HugaidaS/AI-workflow",
         },
         {
           title: "Suprise",
@@ -58,15 +50,15 @@ const data = {
       ],
     },
   ],
-}
+};
 
-export function AppSidebar({...props}: React.ComponentProps<typeof Sidebar>) {
-  const pathname = usePathname()
-  const isActive = (url: string) => pathname === url
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const pathname = usePathname();
+  const isActive = (url: string) => pathname === url;
 
   return (
     <Sidebar {...props}>
-      <SidebarHeader>
+      <SidebarHeader className="justify-center items-center">
         AI workflows & UI Demo
       </SidebarHeader>
       <SidebarContent>
@@ -88,7 +80,7 @@ export function AppSidebar({...props}: React.ComponentProps<typeof Sidebar>) {
           </SidebarGroup>
         ))}
       </SidebarContent>
-      <SidebarRail/>
+      <SidebarRail />
     </Sidebar>
-  )
+  );
 }

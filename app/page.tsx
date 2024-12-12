@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 export default function Home() {
   const router = useRouter();
   const redirectToDashboard = () => {
-    router.push("/dashboard");
+    router.push("/dashboard/chat");
   };
   return (
     <div className=" mx-auto rounded-md  h-screen overflow-hidden">

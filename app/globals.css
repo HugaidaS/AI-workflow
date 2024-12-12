@@ -14,6 +14,42 @@ body {
 	.text-dark_light {
 		@apply dark:text-white text-gray-900;
 	}
+
+	.chat_userBubble {
+		@apply p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700 leading-5;
+	}
+
+	.chat_barternderBubble {
+		@apply p-4 border-gray-200 bg-gray-100 rounded-s-xl rounded-ee-xl dark:bg-gray-700 leading-5;
+	}
+
+	.element-bg {
+		@apply dark:bg-[rgba(40,40,40,0.70)] bg-gray-100;
+	}
+
+	.text_gradient_primary {
+		@apply text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500
+	}
+
+	.text_gradient_secondary {
+		@apply text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500
+	}
+
+	.text_gradient_tertiary {
+		@apply text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-500
+	}
+
+	.text_gradient_quaternary {
+		@apply text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-500 to-blue-500
+	}
+
+	.text_gradient_quinary {
+		@apply text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-400
+	}
+
+	.btn_gradient_primary {
+		@apply bg-gradient-to-r from-purple-500 via-blue-500 to-indigo-600 hover:from-blue-600 hover:to-purple-600
+	}
 }
 
 @layer base {
@@ -37,7 +73,7 @@ body {
 		--border: 252 20% 53%;
 		--input: 252 20% 50%;
 		--ring: 252 67% 56%;
-		--radius: 0.75rem;
+		--radius: 0.45rem;
 
 		--sidebar-background: var(--background);
 		--sidebar-foreground: var(--foreground);
@@ -69,7 +105,7 @@ body {
 		--border: 252 20% 50%;
 		--input: 252 20% 51%;
 		--ring: 252 67% 57%;
-		--radius: 0.75rem;
+		--radius: 0.45rem;
 
 		--sidebar-background: var(--background);
 		--sidebar-foreground: var(--foreground);
