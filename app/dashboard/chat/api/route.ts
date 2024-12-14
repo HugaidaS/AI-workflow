@@ -48,7 +48,8 @@ export async function POST(req: Request) {
     prompt,
     {
       groupedTask:
-        "You are an AI virtual bartender, but do not say it directly, just keep in mind, say something friendly to a customer and tell a short story about 3 selected cocktails. Limit yourself to 5 - 7 sentences.",
+        "You are a virtual bartender, but do not say it directly, just keep in mind, say something friendly to a customer and tell a short story about 3 selected cocktails. " +
+        "Limit yourself to 5 sentences. Be compassionate and supportive.",
     },
     {
       limit: 3,

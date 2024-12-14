@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { CardDescription, CardTitle } from "@/components/cards-demo-3";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 import { PlaceholdersAndVanishInput } from "@/components/ui/placeholders-and-vanish-input";
 import { BackgroundGradient } from "@/components/ui/background-gradient";
 import { GridLoader } from "react-spinners"; // Define the cocktail record interface for raw data from the backend
@@ -65,33 +64,6 @@ const ChatPage = () => {
     null
   );
   const [answeredPrompt, setAnsweredPrompt] = useState<string | null>(null);
-
-  const words = [
-    {
-      text: "Ask",
-    },
-    {
-      text: "the",
-    },
-    {
-      text: "Midnight",
-    },
-    {
-      text: "Bartender",
-    },
-    {
-      text: "for",
-    },
-    {
-      text: "a",
-    },
-    {
-      text: "cocktail",
-    },
-    {
-      text: "recommendation",
-    },
-  ];
 
   const placeholders = [
     "What cocktail would you like to try?",
@@ -157,10 +129,9 @@ const ChatPage = () => {
       <div>
         <div className="flex flex-col gap-4">
           {!answeredPrompt && !isLoading && (
-            <TypewriterEffect
-              words={words}
-              cursorClassName="bg-primary-accent"
-            />
+            <h1 className="text_gradient_tertiary text-3xl xl:text-4xl text-center">
+              Ask AI Bartender for a cocktail recommendation
+            </h1>
           )}
           {answeredPrompt && (
             <div className="w-full flex gap-4 ">
