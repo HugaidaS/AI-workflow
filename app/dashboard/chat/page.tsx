@@ -6,9 +6,10 @@ import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { PlaceholdersAndVanishInput } from "@/components/ui/placeholders-and-vanish-input";
 import { BackgroundGradient } from "@/components/ui/background-gradient";
-import { GridLoader } from "react-spinners"; // Define the cocktail record interface for raw data from the backend
+import { GridLoader } from "react-spinners";
 
 // Define the cocktail record interface for raw data from the backend
+// TODO: Replace with ZOD schema
 interface CocktailRecord {
   metadata: Record<string, unknown>;
   properties: {
