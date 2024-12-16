@@ -112,98 +112,96 @@ const ChatPage = () => {
     }
   };
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center size-full p-4">
-        <div className="flex flex-col items-center">
-          <h3 className="text-xl font-bold text_gradient_tertiary mb-2">
-            Looking for the best matches...
-          </h3>
-          <GridLoader color="purple" size={20} />
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="flex flex-col justify-between h-full p-4 transition-all">
-      <div>
-        <div className="flex flex-col gap-4">
-          {!answeredPrompt && !isLoading && (
-            <h1 className="text_gradient_tertiary text-3xl xl:text-4xl text-center">
-              Ask AI Bartender for a cocktail recommendation
-            </h1>
-          )}
-          {answeredPrompt && (
-            <div className="w-full flex gap-4 ">
-              <div className="flex flex-col items-center gap-2">
-                <Avatar>
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
-                <div>Me</div>
-              </div>
-              <p className="text-sm w-full sm:max-w-[50%] flex chat_userBubble element-bg">
-                {answeredPrompt}
-              </p>
-            </div>
-          )}
-          {bartenderResponse && (
-            <div className="w-full flex gap-4 justify-end ">
-              <p className="text-sm  w-full sm:max-w-[50%] chat_barternderBubble element-bg">
-                {bartenderResponse}
-              </p>
-              <div className="flex flex-col items-center gap-2">
-                <Avatar>
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
-                <div>Dio</div>
-              </div>
-            </div>
-          )}
+      {isLoading ? (
+        <div className="flex justify-center items-center size-full p-4">
+          <div className="flex flex-col items-center">
+            <h3 className="text-xl font-bold text_gradient_tertiary mb-2">
+              Looking for the best matches...
+            </h3>
+            <GridLoader color="purple" size={20} />
+          </div>
         </div>
-        <div className="my-4 text-lg text-gray-600 flex flex-row flex-wrap justify-around gap-3">
-          {response.map((item) => (
-            <BackgroundGradient
-              className="rounded-[22px] w-full sm:max-w-sm p-4 sm:p-10 bg-gray-100 dark:bg-zinc-900 h-full"
-              key={item.uuid}
-            >
-              <Image
-                src={item.properties.drinkThumbnail}
-                alt={item.properties.name}
-                width={180}
-                height={100}
-                className="rounded-xl flex"
-              />
+      ) : (
+        <div>
+          <div className="flex flex-col gap-4">
+            {!answeredPrompt && !isLoading && (
+              <h1 className="text_gradient_tertiary text-3xl xl:text-4xl text-center">
+                Ask AI Bartender for a cocktail recommendation
+              </h1>
+            )}
+            {answeredPrompt && (
+              <div className="w-full flex gap-4 ">
+                <div className="flex flex-col items-center gap-2">
+                  <Avatar>
+                    <AvatarImage src="https://github.com/shadcn.png" />
+                    <AvatarFallback>CN</AvatarFallback>
+                  </Avatar>
+                  <div>Me</div>
+                </div>
+                <p className="text-sm w-full sm:max-w-[50%] flex chat_userBubble element-bg">
+                  {answeredPrompt}
+                </p>
+              </div>
+            )}
+            {bartenderResponse && (
+              <div className="w-full flex gap-4 justify-end ">
+                <p className="text-sm  w-full sm:max-w-[50%] chat_barternderBubble element-bg">
+                  {bartenderResponse}
+                </p>
+                <div className="flex flex-col items-center gap-2">
+                  <Avatar>
+                    <AvatarImage src="https://github.com/shadcn.png" />
+                    <AvatarFallback>CN</AvatarFallback>
+                  </Avatar>
+                  <div>Dio</div>
+                </div>
+              </div>
+            )}
+          </div>
+          <div className="my-4 text-lg text-gray-600 flex flex-row flex-wrap justify-around gap-3">
+            {response.map((item) => (
+              <BackgroundGradient
+                className="rounded-[22px] w-full sm:max-w-sm p-4 sm:p-10 bg-gray-100 dark:bg-zinc-900 h-full"
+                key={item.uuid}
+              >
+                <Image
+                  src={item.properties.drinkThumbnail}
+                  alt={item.properties.name}
+                  width={180}
+                  height={100}
+                  className="rounded-xl flex"
+                />
 
-              <CardTitle className="text-dark_light">
-                {item.properties.name}
-              </CardTitle>
-              <CardDescription className="overflow-scroll max-h-52 flex flex-col gap-2">
-                <div>
-                  {item.properties.alcoholic} {item.properties.category}
-                </div>
-                <div>
-                  <h3 className="font-bold text-dark_light">Ingredients:</h3>
-                  <ul className="list-disc">
-                    {item.properties.ingredients.map((ingredient, idx) => (
-                      <li key={idx}>
-                        {ingredient} -{" "}
-                        {item.properties.ingredientMeasures[idx] || "N/A"}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="font-bold text-dark_light">Instructions:</h3>
-                  {item.properties.instructions}
-                </div>
-              </CardDescription>
-            </BackgroundGradient>
-          ))}
+                <CardTitle className="text-dark_light">
+                  {item.properties.name}
+                </CardTitle>
+                <CardDescription className="overflow-scroll max-h-52 flex flex-col gap-2">
+                  <div>
+                    {item.properties.alcoholic} {item.properties.category}
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-dark_light">Ingredients:</h3>
+                    <ul className="list-disc">
+                      {item.properties.ingredients.map((ingredient, idx) => (
+                        <li key={idx}>
+                          {ingredient} -{" "}
+                          {item.properties.ingredientMeasures[idx] || "N/A"}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-dark_light">Instructions:</h3>
+                    {item.properties.instructions}
+                  </div>
+                </CardDescription>
+              </BackgroundGradient>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
       <div className="w-full">
         <PlaceholdersAndVanishInput
           placeholders={placeholders}
