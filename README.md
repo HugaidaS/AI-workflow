@@ -1,10 +1,17 @@
 # Weaviate Challenge
 
+![Cover Image](./cover.png)
+
 ## Overview
 
 **Weaviate Challenge** is a cocktail recommendation app powered by Weaviate, OpenAI, and Next.js. Users can interact
 with an AI bartender to get personalized cocktail suggestions based on their preferences. The app provides engaging,
 dynamic responses and detailed cocktail information, including ingredients, instructions, and images.
+
+## Demo
+
+You can find the live
+demo [here](https://www.loom.com/share/608b7079c700427fbd21c47ed39bb3e2?sid=7fb0f61b-c46c-4619-b51b-f4955f515cd4).
 
 ## Features
 
