@@ -55,11 +55,6 @@ export async function POST(req: Request) {
       }
     );
 
-    result.objects.forEach((item) => {
-      console.log(JSON.stringify(item.properties, null, 2));
-    });
-    console.log(result.generated);
-
     await client.close(); // Close the client connection
 
     return new NextResponse(

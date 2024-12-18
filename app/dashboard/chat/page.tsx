@@ -101,7 +101,6 @@ const ChatPage = () => {
         },
       }));
 
-      console.log(parsedItems);
       setResponse(parsedItems);
       setBartenderResponse(data.generated);
       setAnsweredPrompt(data.userPrompt);
