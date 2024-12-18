@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Weaviate Challenge
 
-## Getting Started
+## Overview
 
-First, run the development server:
+**Weaviate Challenge** is a cocktail recommendation app powered by Weaviate, OpenAI, and Next.js. Users can interact
+with an AI bartender to get personalized cocktail suggestions based on their preferences. The app provides engaging,
+dynamic responses and detailed cocktail information, including ingredients, instructions, and images.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- AI-powered cocktail recommendations using Weaviate and OpenAI.
+- Dynamic user interaction with a friendly AI bartender.
+- Visual representation of cocktail information.
+- Smooth and responsive design built with Next.js and TailwindCSS.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Frontend**: React, Next.js, TailwindCSS, Radix UI, Framer Motion
+- **Backend**: Weaviate client, OpenAI API
+- **State Management**: React Hooks
+- **Styling**: TailwindCSS, TailwindCSS Animate
+- **Other Libraries**: Lucide React, React Icons, React Spinners, Simplex Noise
+- **Utilities**: ESLint, Prettier, TypeScript
 
-## Learn More
+## How It Works
 
-To learn more about Next.js, take a look at the following resources:
+1. **Prompt Submission**: Users input their preferences or emotions.
+2. **Data Processing**: The app queries the Weaviate database to fetch cocktail data.
+3. **AI Generation**: The AI bartender generates a personalized response.
+4. **Display**: Cocktail details and AI responses are displayed interactively.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Scripts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `dev`: Run the development server.
+- `build`: Build the application for production.
+- `start`: Start the production server.
+- `lint`: Run linting with ESLint.
 
-## Deploy on Vercel
+## Installation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/HugaidaS/AI-workflow
+   npm install
+   npm run dev
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Environment Variables
+
+1. Create a .env.local file in the root directory and add the following variables:
+
+    ```bash
+    WEAVIATE_URL=your-openai-api-key
+    OPENAI_API_KEY=your-weaviate-url
+    ADMIN_API_KEY=your-weaviate-api-key
+    ```
+
+## Future Enhancements
+
+Enhanced personalization for cocktail recommendations.
+Additional datasets and functionality for non-alcoholic options.
+Improved visual designs and animations.
+Integration with other AI services for more dynamic responses.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
